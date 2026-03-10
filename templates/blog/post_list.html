@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+       <p>Logged in as {{user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
+    {% else %}
+       <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign up</a></p>
+    {% endif %}
+    <h1 class="text-center mb-4" style="text-decoration: none !important; border: none !important; box-shadow: none !important; background-image: none !important;">Blog Posts</h1>
+    {% for post in posts %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h2><a href="{%url 'post_detail' pk=post.pk %}" >{{post.title}}</a></h2>
+                <p>{{ post.text|truncatewords:30 }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+
+

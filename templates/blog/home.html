@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="hero">
+    <!-- Featured post content -->
+    <h1>{{ featured_post.title }}</h1>
+    <p>{{ featured_post.summary }}</p>
+</section>
+<section class="latest-posts">
+    <h2>Latest Posts</h2>
+    <div class="grid">
+        {% for post in latest_posts %}
+        <div class="post">
+            {{ post.image.url }} <!-- add this -->
+            <img src="{{ post.image.url }}" alt="{{ post.title }}">
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.summary }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
